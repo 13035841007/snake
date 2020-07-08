@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .box {
+        margin: 10px auto;
+        border: 1px solid #ccc;
+    }
+    .row {
+        display: flex;
+    }
+    .col {
+        border: 1px solid #ccc;
+        flex: 1;
+        background-size: cover;
+    }
+    </style>
+</head>
+<body>
+    <script src="js/Block.js"></script>
+    <script src="js/Map.js"></script>
+    <script src="js/Food.js"></script>
+    <script src="js/Snake.js"></script>
+    <script src="js/Game.js"></script>
+    <script>
+    // 实例化各个类
+    var block = new Block('./img/block.png');
+    // 行数，列数，总宽，总高
+    // var map = new Map(10, 10, 300, 300);
+    var map = new Map(20, 20, 600, 600);
+    var food = new Food(6, 2, './img/food.jpg');
+    var Snake = new Snake({
+        head: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
+        body: './img/5.png',
+        tail: ['./img/8.png', './img/9.png', './img/6.png', './img/7.png']
+    });
+    // 将四个属性传递给Game类
+    // var Game = new Game(Snake, map, food, block, 500);
+    var Game = new Game(Snake, map, food, block, 100);
+    </script>
+</body>
+</html>
