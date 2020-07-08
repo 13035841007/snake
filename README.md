@@ -1,4 +1,4 @@
 贪吃蛇
-预览项目
-​		 http://htmlpreview.github.io/
+预览
+ http://htmlpreview.github.io/
 
