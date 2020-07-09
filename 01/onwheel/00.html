@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 560px;
+            height: 300px;
+            margin: 50px auto;
+            overflow: hidden;
+
+        }
+        ul {
+            width: 4000px;
+            height: 300px;
+            position: relative;
+            left: -560px;
+            font-size: 0;
+        }
+
+        li {
+            width: 560px;
+            height: 300px;
+            display: inline-block;
+        }
+
+        li:nth-child(1) {
+            background-image: url(images/maogou/4.jpg);
+        }
+
+        li:nth-child(2) {
+            background-image: url(images/maogou/0.jpg);
+        }
+
+        li:nth-child(3) {
+            background-image: url(images/maogou/1.jpg);
+        }
+
+        li:nth-child(4) {
+            background-image: url(images/maogou/2.jpg);
+        }
+
+        li:nth-child(5) {
+            background-image: url(images/maogou/3.jpg);
+        }
+
+        li:nth-child(6) {
+            background-image: url(images/maogou/4.jpg);
+        }
+
+        li:nth-child(7) {
+            background-image: url(images/maogou/0.jpg);
+        }
+        #box2{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li>4</li>
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>0</li>
+        </ul>
+    </div>
+    <div id="box2"></div>
+    <script src="tool.js"></script>
+    <!-- <script src="./ickt2.js"></script> -->
+    <script>
+        var box = document.getElementById("box");
+        var ul = document.getElementsByTagName("ul")[0];
+        // 当前图片的索引值 (不考虑猫腻图)
+        var idx = 0;
+        var lock = false;
+       function showR(){
+           if(lock){
+               return
+           }
+           lock = true;
+           idx++;
+           animate(ul,{left:-560 *  (idx + 1)},1000,function(){
+               if(idx > 4){
+                   idx = 0;
+                   css(ul,'left','-560px');
+               }
+               lock = false;
+           })
+       }
+       function showL(){
+           if(lock){
+               return;
+           }
+           lock  = true;
+           idx--;
+           animate(ul,{left:-560 * (idx + 1)},1000,function(){
+               if(idx < 0){
+                   idx = 4;
+                   css(ul,"left",-5 * 560 + 'px')
+               }
+               lock = false;
+           })
+       }
+       function deal(e){
+         if(e.wheelDelta){
+           if(e.wheelDelta > 0){
+               showR();
+           }else{
+               showL();
+           }
+       }else{
+           if(e.detail < 0){
+               showR();
+           }else{
+               showL();
+           }
+       }
+    }
+
+       addEvent(box,'mouseenter',function(){
+         addEvent(document,'mousewheel',deal)
+       })
+       addEvent(box,'mouseleave',function(){
+           removeEventListener(document,'mousewheel',deal)
+       })
+    </script>
+</body>
+
+</html>
